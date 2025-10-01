@@ -1,5 +1,5 @@
 {
-  "name": "@vimeo/capacitor-video-native-bridge",
+  "name": "capacitor-video-native-bridge",
   "version": "0.1.0",
   "description": "Capacitor plugin that bridges native iOS video player with JavaScript",
   "main": "dist/plugin.cjs.js",
@@ -18,10 +18,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vimeo/capacitor-video-native-bridge"
+    "url": "https://github.com/PRL-Digital/vimeo-capacitor-player"
   },
   "bugs": {
-    "url": "https://github.com/vimeo/capacitor-video-native-bridge/issues"
+    "url": "https://github.com/PRL-Digital/vimeo-capacitor-player/issues"
   },
   "keywords": [
     "capacitor",
