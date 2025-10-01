@@ -1,7 +1,7 @@
 {
-  "name": "capacitor-video-native-bridge",
+  "name": "vimeo-capacitor-player",
   "version": "0.1.0",
-  "description": "Capacitor plugin that bridges native iOS video player with JavaScript",
+  "description": "Capacitor plugin that bridges native iOS video player for vimeo with JavaScript",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -12,7 +12,7 @@
     "dist/",
     "ios/Sources",
     "ios/Package.swift",
-    "VimeoCapacitorVideoNativeBridge.podspec"
+    "VimeoCapacitorPlayer.podspec"
   ],
   "author": "Vimeo",
   "license": "MIT",

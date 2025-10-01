@@ -1,6 +1,6 @@
 # Vimeo Capacitor Player Example
 
-Example Vite React application demonstrating the `@vimeo/capacitor-video-native-bridge` Capacitor plugin.
+Example Vite React application demonstrating the `@vimeo/vimeo-capacitor-player` Capacitor plugin.
 
 ## Features
 
@@ -38,6 +38,7 @@ npx cap sync
 ### 4. Run on iOS
 
 Open in Xcode:
+
 ```bash
 npx cap open ios
 ```
@@ -99,12 +100,12 @@ The app sets up event listeners for the video player:
 
 ```tsx
 // Listen for video player events
-await VideoNativeBridge.addListener('videoPlayerOpened', (info) => {
-  console.log('Video opened:', info);
+await VideoNativeBridge.addListener("videoPlayerOpened", (info) => {
+  console.log("Video opened:", info);
 });
 
-await VideoNativeBridge.addListener('videoPlayerClosed', () => {
-  console.log('Video closed');
+await VideoNativeBridge.addListener("videoPlayerClosed", () => {
+  console.log("Video closed");
 });
 ```
 
@@ -133,7 +134,7 @@ All plugin events are logged in the UI with timestamps and payloads for easy deb
 Edit `src/App.tsx`:
 
 ```tsx
-const VIMEO_VIDEO_ID = '76979871' // Replace with your video ID
+const VIMEO_VIDEO_ID = "76979871"; // Replace with your video ID
 ```
 
 ### Styling
@@ -165,7 +166,7 @@ Edit `src/App.css` to customize the appearance.
 
 - [Capacitor Documentation](https://capacitorjs.com/docs)
 - [Vimeo Player SDK](https://developer.vimeo.com/player/sdk)
-- [Plugin README](../capacitor-video-native-bridge/README.md)
+- [Plugin README](../vimeo-capacitor-player/README.md)
 
 ## License
 

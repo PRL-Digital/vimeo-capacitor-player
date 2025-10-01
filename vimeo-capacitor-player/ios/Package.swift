@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "VimeoCapacitorVideoNativeBridge",
+    name: "VimeoCapacitorPlayer",
     platforms: [.iOS(.v14)],
     products: [
         .library(
-            name: "VideoNativeBridgePlugin",
-            targets: ["VideoNativeBridgePlugin"]
+            name: "VimeoCapacitorPlayerPlugin",
+            targets: ["imeoCapacitorPlayerPlugin"]
         )
     ],
     dependencies: [
@@ -15,12 +15,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "VideoNativeBridgePlugin",
+            name: "imeoCapacitorPlayerPlugin",
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm")
             ],
-            path: "Sources/VideoNativeBridgePlugin"
+            path: "Sources/imeoCapacitorPlayerPlugin"
         )
     ]
 )

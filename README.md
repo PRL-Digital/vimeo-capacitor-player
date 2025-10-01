@@ -6,7 +6,7 @@ A Capacitor plugin that bridges native iOS video player with JavaScript, enablin
 
 This monorepo contains:
 
-- **[capacitor-video-native-bridge](./capacitor-video-native-bridge)** - The Capacitor plugin
+- **[vimeo-capacitor-player](./vimeo-capacitor-player)** - The Capacitor plugin
 - **[example](./example)** - Vite React example app with Vimeo integration
 
 ## 🚀 Quick Start
@@ -14,11 +14,11 @@ This monorepo contains:
 ### Plugin Installation
 
 ```bash
-npm install @vimeo/capacitor-video-native-bridge
+npm install vimeo-capacitor-player
 npx cap sync
 ```
 
-See the [plugin README](./capacitor-video-native-bridge/README.md) for detailed usage instructions.
+See the [plugin README](./vimeo-capacitor-player/README.md) for detailed usage instructions.
 
 ### Running the Example
 
@@ -34,7 +34,7 @@ See the [example README](./example/README.md) for more details.
 
 ## 📖 Documentation
 
-- **[Plugin README](./capacitor-video-native-bridge/README.md)** - Plugin API and usage
+- **[Plugin README](./vimeo-capacitor-player/README.md)** - Plugin API and usage
 - **[Example README](./example/README.md)** - Example app setup and development
 - **[Scope Document](./scope.md)** - Project scope and technical specifications
 
@@ -52,7 +52,7 @@ See the [example README](./example/README.md) for more details.
 
 ```
 vimeo-capacitor-player/
-├── capacitor-video-native-bridge/    # Capacitor plugin
+├── vimeo-capacitor-player/    # Capacitor plugin
 │   ├── ios/                          # iOS native code (Swift)
 │   ├── android/                      # Android stub
 │   ├── src/                          # TypeScript definitions
@@ -68,7 +68,7 @@ vimeo-capacitor-player/
 ### Building the Plugin
 
 ```bash
-cd capacitor-video-native-bridge
+cd vimeo-capacitor-player
 npm install
 npm run build
 ```

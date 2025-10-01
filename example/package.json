@@ -13,7 +13,7 @@
     "@capacitor/cli": "^7.4.3",
     "@capacitor/core": "^7.4.3",
     "@capacitor/ios": "^7.4.3",
-    "@vimeo/capacitor-video-native-bridge": "file:../capacitor-video-native-bridge",
+    "vimeo-capacitor-player": "file:../vimeo-capacitor-player",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

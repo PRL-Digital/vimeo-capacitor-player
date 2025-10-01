@@ -1,137 +1,141 @@
-import { useState, useEffect } from 'react'
-import { VideoNativeBridge } from '@vimeo/capacitor-video-native-bridge'
-import type { VideoPlayerInfo, PlaybackState, VideoTimeInfo } from '@vimeo/capacitor-video-native-bridge'
-import './App.css'
+import { useState, useEffect } from "react";
+import { VideoNativeBridge } from "vimeo-capacitor-player";
+import type {
+  VideoPlayerInfo,
+  PlaybackState,
+  VideoTimeInfo,
+} from "vimeo-capacitor-player";
+import "./App.css";
 
 // Preset Vimeo video URL - Replace with your own video ID
-const VIMEO_VIDEO_ID = '76979871'
-const VIMEO_URL = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}`
+const VIMEO_VIDEO_ID = "76979871";
+const VIMEO_URL = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}`;
 
 interface EventLog {
-  timestamp: Date
-  event: string
-  data?: any
+  timestamp: Date;
+  event: string;
+  data?: any;
 }
 
 function App() {
-  const [eventLogs, setEventLogs] = useState<EventLog[]>([])
-  const [isPlayerActive, setIsPlayerActive] = useState(false)
-  const [playerState, setPlayerState] = useState<PlaybackState | null>(null)
+  const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
+  const [isPlayerActive, setIsPlayerActive] = useState(false);
+  const [playerState, setPlayerState] = useState<PlaybackState | null>(null);
 
   useEffect(() => {
     // Add event listeners for video player
-    const listeners: any[] = []
+    const listeners: any[] = [];
 
     const setupListeners = async () => {
       // Listen for when native video player opens
       const openedListener = await VideoNativeBridge.addListener(
-        'videoPlayerOpened',
+        "videoPlayerOpened",
         (info: VideoPlayerInfo) => {
-          addLog('videoPlayerOpened', info)
-          setIsPlayerActive(true)
+          addLog("videoPlayerOpened", info);
+          setIsPlayerActive(true);
         }
-      )
-      listeners.push(openedListener)
+      );
+      listeners.push(openedListener);
 
       // Listen for when native video player closes
       const closedListener = await VideoNativeBridge.addListener(
-        'videoPlayerClosed',
+        "videoPlayerClosed",
         () => {
-          addLog('videoPlayerClosed')
-          setIsPlayerActive(false)
-          setPlayerState(null)
+          addLog("videoPlayerClosed");
+          setIsPlayerActive(false);
+          setPlayerState(null);
         }
-      )
-      listeners.push(closedListener)
+      );
+      listeners.push(closedListener);
 
       // Listen for playback state changes
       const stateListener = await VideoNativeBridge.addListener(
-        'videoPlaybackStateChanged',
+        "videoPlaybackStateChanged",
         (state: PlaybackState) => {
-          addLog('videoPlaybackStateChanged', state)
-          setPlayerState(state)
+          addLog("videoPlaybackStateChanged", state);
+          setPlayerState(state);
         }
-      )
-      listeners.push(stateListener)
+      );
+      listeners.push(stateListener);
 
       // Listen for time updates
       const timeListener = await VideoNativeBridge.addListener(
-        'videoTimeUpdated',
+        "videoTimeUpdated",
         (time: VideoTimeInfo) => {
           // Only log every few seconds to avoid spam
           if (Math.floor(time.currentTime) % 5 === 0) {
-            addLog('videoTimeUpdated', time)
+            addLog("videoTimeUpdated", time);
           }
         }
-      )
-      listeners.push(timeListener)
-    }
+      );
+      listeners.push(timeListener);
+    };
 
-    setupListeners()
+    setupListeners();
 
     // Cleanup listeners on unmount
     return () => {
-      listeners.forEach(listener => listener.remove())
-    }
-  }, [])
+      listeners.forEach((listener) => listener.remove());
+    };
+  }, []);
 
   const addLog = (event: string, data?: any) => {
-    setEventLogs(prev => [
+    setEventLogs((prev) => [
       { timestamp: new Date(), event, data },
-      ...prev.slice(0, 49) // Keep last 50 logs
-    ])
-  }
+      ...prev.slice(0, 49), // Keep last 50 logs
+    ]);
+  };
 
   const clearLogs = () => {
-    setEventLogs([])
-  }
+    setEventLogs([]);
+  };
 
   const checkPlayerActive = async () => {
     try {
-      const result = await VideoNativeBridge.isNativePlayerActive()
-      addLog('isNativePlayerActive', result)
-      setIsPlayerActive(result.active)
+      const result = await VideoNativeBridge.isNativePlayerActive();
+      addLog("isNativePlayerActive", result);
+      setIsPlayerActive(result.active);
     } catch (error) {
-      addLog('error', { method: 'isNativePlayerActive', error: String(error) })
+      addLog("error", { method: "isNativePlayerActive", error: String(error) });
     }
-  }
+  };
 
   const getPlayerState = async () => {
     try {
-      const state = await VideoNativeBridge.getPlayerState()
-      addLog('getPlayerState', state)
-      setPlayerState(state)
+      const state = await VideoNativeBridge.getPlayerState();
+      addLog("getPlayerState", state);
+      setPlayerState(state);
     } catch (error) {
-      addLog('error', { method: 'getPlayerState', error: String(error) })
+      addLog("error", { method: "getPlayerState", error: String(error) });
     }
-  }
+  };
 
   const handlePlay = async () => {
     try {
-      await VideoNativeBridge.play()
-      addLog('play command sent')
+      await VideoNativeBridge.play();
+      addLog("play command sent");
     } catch (error) {
-      addLog('error', { method: 'play', error: String(error) })
+      addLog("error", { method: "play", error: String(error) });
     }
-  }
+  };
 
   const handlePause = async () => {
     try {
-      await VideoNativeBridge.pause()
-      addLog('pause command sent')
+      await VideoNativeBridge.pause();
+      addLog("pause command sent");
     } catch (error) {
-      addLog('error', { method: 'pause', error: String(error) })
+      addLog("error", { method: "pause", error: String(error) });
     }
-  }
+  };
 
   const handleSeek = async (time: number) => {
     try {
-      await VideoNativeBridge.seek({ time })
-      addLog('seek command sent', { time })
+      await VideoNativeBridge.seek({ time });
+      addLog("seek command sent", { time });
     } catch (error) {
-      addLog('error', { method: 'seek', error: String(error) })
+      addLog("error", { method: "seek", error: String(error) });
     }
-  }
+  };
 
   return (
     <div className="app">
@@ -155,7 +159,8 @@ function App() {
             ></iframe>
           </div>
           <p className="hint">
-            Tap the video to play. On iOS, it will trigger the native video player.
+            Tap the video to play. On iOS, it will trigger the native video
+            player.
           </p>
         </section>
 
@@ -163,17 +168,28 @@ function App() {
           <h2>Plugin Controls</h2>
           <div className="controls">
             <button onClick={checkPlayerActive}>Check Player Active</button>
-            <button onClick={getPlayerState} disabled={!isPlayerActive}>Get Player State</button>
-            <button onClick={handlePlay} disabled={!isPlayerActive}>Play</button>
-            <button onClick={handlePause} disabled={!isPlayerActive}>Pause</button>
-            <button onClick={() => handleSeek(30)} disabled={!isPlayerActive}>Seek to 30s</button>
+            <button onClick={getPlayerState} disabled={!isPlayerActive}>
+              Get Player State
+            </button>
+            <button onClick={handlePlay} disabled={!isPlayerActive}>
+              Play
+            </button>
+            <button onClick={handlePause} disabled={!isPlayerActive}>
+              Pause
+            </button>
+            <button onClick={() => handleSeek(30)} disabled={!isPlayerActive}>
+              Seek to 30s
+            </button>
           </div>
 
           {playerState && (
             <div className="player-state">
               <h3>Current State:</h3>
-              <p>Playing: {playerState.isPlaying ? '▶️ Yes' : '⏸️ No'}</p>
-              <p>Time: {playerState.currentTime.toFixed(2)}s / {playerState.duration.toFixed(2)}s</p>
+              <p>Playing: {playerState.isPlaying ? "▶️ Yes" : "⏸️ No"}</p>
+              <p>
+                Time: {playerState.currentTime.toFixed(2)}s /{" "}
+                {playerState.duration.toFixed(2)}s
+              </p>
             </div>
           )}
         </section>
@@ -181,11 +197,15 @@ function App() {
         <section className="logs-section">
           <div className="logs-header">
             <h2>Event Logs</h2>
-            <button onClick={clearLogs} className="clear-btn">Clear Logs</button>
+            <button onClick={clearLogs} className="clear-btn">
+              Clear Logs
+            </button>
           </div>
           <div className="logs">
             {eventLogs.length === 0 ? (
-              <p className="no-logs">No events yet. Interact with the video to see logs.</p>
+              <p className="no-logs">
+                No events yet. Interact with the video to see logs.
+              </p>
             ) : (
               eventLogs.map((log, index) => (
                 <div key={index} className="log-entry">
@@ -205,7 +225,7 @@ function App() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

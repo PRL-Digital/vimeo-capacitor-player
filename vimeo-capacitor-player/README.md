@@ -1,4 +1,4 @@
-# @vimeo/capacitor-video-native-bridge
+# @vimeo/vimeo-capacitor-player
 
 A Capacitor plugin that bridges native iOS video player events with JavaScript, enabling seamless monitoring and control of native video playback from your web application.
 
@@ -18,7 +18,7 @@ This plugin solves iOS fullscreen video issues by detecting when HTML video elem
 ## Installation
 
 ```bash
-npm install @vimeo/capacitor-video-native-bridge
+npm install @vimeo/vimeo-capacitor-player
 npx cap sync
 ```
 
@@ -35,7 +35,7 @@ Android support is planned for future releases. Currently, the plugin will rejec
 ### Basic Setup
 
 ```typescript
-import { VideoNativeBridge } from '@vimeo/capacitor-video-native-bridge';
+import { VideoNativeBridge } from '@vimeo/vimeo-capacitor-player';
 
 // Listen for when native video player opens
 await VideoNativeBridge.addListener('videoPlayerOpened', (info) => {
@@ -114,11 +114,12 @@ await VideoNativeBridge.removeAllListeners();
 Fired when the native video player opens.
 
 **Payload:**
+
 ```typescript
 interface VideoPlayerInfo {
-  url: string;          // URL of the video
-  duration?: number;    // Duration in seconds (may be undefined initially)
-  isPlaying: boolean;   // Whether video is playing
+  url: string; // URL of the video
+  duration?: number; // Duration in seconds (may be undefined initially)
+  isPlaying: boolean; // Whether video is playing
 }
 ```
 
@@ -131,11 +132,12 @@ Fired when the native video player closes. No payload.
 Fired when playback state changes (play/pause).
 
 **Payload:**
+
 ```typescript
 interface PlaybackState {
-  isPlaying: boolean;   // Whether video is playing
-  currentTime: number;  // Current time in seconds
-  duration: number;     // Total duration in seconds
+  isPlaying: boolean; // Whether video is playing
+  currentTime: number; // Current time in seconds
+  duration: number; // Total duration in seconds
 }
 ```
 
@@ -144,10 +146,11 @@ interface PlaybackState {
 Fired periodically (every 0.5 seconds) during playback.
 
 **Payload:**
+
 ```typescript
 interface VideoTimeInfo {
-  currentTime: number;  // Current time in seconds
-  duration: number;     // Total duration in seconds
+  currentTime: number; // Current time in seconds
+  duration: number; // Total duration in seconds
 }
 ```
 
@@ -182,6 +185,7 @@ Pause playback in the native player.
 Seek to a specific time in the video.
 
 **Parameters:**
+
 - `time` - Time in seconds to seek to
 
 **Returns:** `Promise<void>`
@@ -191,6 +195,7 @@ Seek to a specific time in the video.
 Set the volume of the native player.
 
 **Parameters:**
+
 - `volume` - Volume level from 0.0 (muted) to 1.0 (full volume)
 
 **Returns:** `Promise<void>`
@@ -201,11 +206,11 @@ See the [example app](../example) for a complete React implementation with Vimeo
 
 ## Platform Support
 
-| Platform | Status | Notes |
-|----------|--------|-------|
-| iOS      | ✅ Supported | iOS 14.0+ |
-| Android  | ⏳ Planned | Coming in future release |
-| Web      | ⚠️ Stub | Methods throw "unavailable" error |
+| Platform | Status       | Notes                             |
+| -------- | ------------ | --------------------------------- |
+| iOS      | ✅ Supported | iOS 14.0+                         |
+| Android  | ⏳ Planned   | Coming in future release          |
+| Web      | ⚠️ Stub      | Methods throw "unavailable" error |
 
 ## Limitations
 
@@ -220,10 +225,7 @@ See the [example app](../example) for a complete React implementation with Vimeo
 Make sure your video element or iframe allows fullscreen:
 
 ```html
-<iframe
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-></iframe>
+<iframe allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 ```
 
 ### Events not firing

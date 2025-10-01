@@ -1,0 +1,28 @@
+PODS:
+  - Capacitor (7.4.3):
+    - CapacitorCordova
+  - CapacitorCordova (7.4.3)
+  - VimeoCapacitorPlayer (0.1.0):
+    - Capacitor
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - VimeoCapacitorPlayer (from `../../../vimeo-capacitor-player`)
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  VimeoCapacitorPlayer:
+    :path: "../../../vimeo-capacitor-player"
+
+SPEC CHECKSUMS:
+  Capacitor: b4741ca7affb32c1b70debd03df92cbf522d8a80
+  CapacitorCordova: 435121e81a2df4d0034f0fb11fcefab5104cfdb5
+  VimeoCapacitorPlayer: 6bc39aae494e4d11c986bb8cab1677ae8775bf6d
+
+PODFILE CHECKSUM: 7c5db87eeedbe133eaee5f9709c178a5860ad8c2
+
+COCOAPODS: 1.15.2

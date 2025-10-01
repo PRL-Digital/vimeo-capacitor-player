@@ -6,7 +6,7 @@ This guide will help you get started with the Vimeo Capacitor Player plugin and 
 
 ```
 vimeo-capacitor-player/
-├── capacitor-video-native-bridge/    # Capacitor plugin
+├── vimeo-capacitor-player/    # Capacitor plugin
 │   ├── ios/                          # iOS native Swift code
 │   │   └── Sources/
 │   │       └── VideoNativeBridgePlugin/
@@ -32,11 +32,13 @@ vimeo-capacitor-player/
 ### For Plugin Development
 
 1. **Navigate to plugin directory:**
+
    ```bash
-   cd capacitor-video-native-bridge
+   cd vimeo-capacitor-player
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
@@ -49,26 +51,31 @@ vimeo-capacitor-player/
 ### For Example App
 
 1. **Navigate to example directory:**
+
    ```bash
    cd example
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Build the web app:**
+
    ```bash
    npm run build
    ```
 
 4. **Sync Capacitor:**
+
    ```bash
    npx cap sync
    ```
 
 5. **Open in Xcode (macOS only):**
+
    ```bash
    npx cap open ios
    ```
@@ -98,7 +105,7 @@ vimeo-capacitor-player/
 
 ### Making Changes to the Plugin
 
-1. Edit files in `capacitor-video-native-bridge/src/` or `capacitor-video-native-bridge/ios/`
+1. Edit files in `vimeo-capacitor-player/src/` or `vimeo-capacitor-player/ios/`
 2. Rebuild the plugin: `npm run build`
 3. Sync in example app: `cd ../example && npx cap sync`
 4. Rebuild iOS app in Xcode
@@ -126,14 +133,16 @@ Open http://localhost:5173 in your browser.
 ### Build Errors
 
 **Plugin build fails:**
+
 ```bash
-cd capacitor-video-native-bridge
+cd vimeo-capacitor-player
 rm -rf node_modules dist
 npm install
 npm run build
 ```
 
 **Example app build fails:**
+
 ```bash
 cd example
 rm -rf node_modules dist
@@ -144,10 +153,12 @@ npm run build
 ### iOS Issues
 
 **Plugin not recognized:**
+
 - Make sure you ran `npx cap sync` after building the plugin
 - Clean build in Xcode: Product > Clean Build Folder (Cmd+Shift+K)
 
 **CocoaPods errors (macOS):**
+
 ```bash
 cd example/ios/App
 pod install
@@ -155,7 +166,7 @@ pod install
 
 ### Plugin Not Working
 
-1. Verify the plugin is built: check `capacitor-video-native-bridge/dist/` exists
+1. Verify the plugin is built: check `vimeo-capacitor-player/dist/` exists
 2. Verify Capacitor sync ran: check `example/ios/App/Podfile`
 3. Rebuild iOS app completely in Xcode
 4. Check Xcode console for error messages
@@ -167,23 +178,23 @@ pod install
 Edit `example/src/App.tsx`:
 
 ```tsx
-const VIMEO_VIDEO_ID = 'YOUR_VIDEO_ID'
+const VIMEO_VIDEO_ID = "YOUR_VIDEO_ID";
 ```
 
 ### Publishing the Plugin
 
-1. Update version in `capacitor-video-native-bridge/package.json`
+1. Update version in `vimeo-capacitor-player/package.json`
 2. Build: `npm run build`
 3. Publish: `npm publish --access public`
 
 ### Installing in Your Own App
 
 ```bash
-npm install @vimeo/capacitor-video-native-bridge
+npm install @vimeo/vimeo-capacitor-player
 npx cap sync
 ```
 
-Then follow the usage examples in the [plugin README](./capacitor-video-native-bridge/README.md).
+Then follow the usage examples in the [plugin README](./vimeo-capacitor-player/README.md).
 
 ## System Requirements
 
@@ -202,6 +213,6 @@ Then follow the usage examples in the [plugin README](./capacitor-video-native-b
 
 ## Getting Help
 
-- Check the [plugin README](./capacitor-video-native-bridge/README.md)
+- Check the [plugin README](./vimeo-capacitor-player/README.md)
 - Check the [example README](./example/README.md)
 - Review the [scope document](./scope.md) for technical details
